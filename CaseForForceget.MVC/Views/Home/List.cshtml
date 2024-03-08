@@ -1,0 +1,36 @@
+﻿@using CaseForForceget.EntityLayer.Dtos
+@{
+    ViewData["Title"] = "Offer List Page";
+}
+
+@model List<OfferDto>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Mode</th>
+            <th>Movement Type</th>
+            <th>Incoterms</th>
+            <th>Countries-Cities</th>
+            <th>Package Type</th>
+            <th>Unit -1</th>
+            <th>Unit -2</th>
+            <th>Currency</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var offerDto in Model)
+        {
+            <tr>
+                <td>@offerDto.Mode</td>
+                <td>@offerDto.MovementType</td>
+                <td>@offerDto.Incoterms</td>
+                <td>@offerDto.CountriesCities</td>
+                <td>@offerDto.PackageType</td>
+                <td>@offerDto.Unit1</td>
+                <td>@offerDto.Unit2</td>
+                <td>@offerDto.Currency</td>
+            </tr>
+        }
+    </tbody>
+</table>

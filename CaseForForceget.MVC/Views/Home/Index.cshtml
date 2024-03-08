@@ -1,0 +1,185 @@
+﻿@using CaseForForceget.EntityLayer.Dtos
+@{
+    ViewData["Title"] = "Offer Page";
+}
+
+@model OfferDto
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Page</title>
+    <style>
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group select {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+        .info-icon {
+            color: red;
+            cursor: pointer;
+        }
+
+            .info-icon:hover::after {
+                content: attr(title);
+                position: absolute;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                padding: 5px;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: red;
+            color: white;
+            cursor: pointer;  
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3), 5px 5px 15px rgba(0, 0, 0, 0.2); 
+        }
+
+            button[type="submit"]:hover {
+                background-color: darkred;
+            }
+    </style>
+
+    <script>
+        function validateForm() {
+            var isValid = true;
+            $('.form-group select').each(function () {
+                if ($(this).val() === "") {
+                    $(this).closest('.form-group').find('.error-message').text("Please make a selection");
+                    isValid = false;
+                } else {
+                    $(this).closest('.form-group').find('.error-message').text("");
+                }
+            });
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+   
+    <form action="/Home/Index" method="post" onsubmit="return validateForm()">
+        <div class="form-container">
+            <div class="form-group">
+                <select id="mode" name="mode">
+                    <option value="">Mode</option>
+                    <option value="LCL">LCL</option>
+                    <option value="FCL">FCL</option>
+                    <option value="Air">Air</option>
+                </select>
+                <span class="info-icon" title="Explanation for Mode">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="movementType" name="movementType">
+                    <option value="">Movement Type</option>
+                    <option value="Door to Door">Door to Door</option>
+                    <option value="Port to Door">Port to Door</option>
+                    <option value="Door to Port">Door to Port</option>
+                    <option value="Port to Port">Port to Port</option>
+                </select>
+                <span class="info-icon" title="Explanation for Movement Type">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="incoterms" name="incoterms">
+                    <option value="">Incoterms</option>
+                    <option value="Delivered Duty Paid (DDP)">Delivered Duty Paid (DDP)</option>
+                    <option value="Delivered At Place (DAT)">Delivered At Place (DAT)</option>
+                </select>
+                <span class="info-icon" title="Explanation for Incoterms">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="countriescities" name="countriescities">
+                    <option value="">Countries-Cities</option>
+                    <option value="USA - New York">USA - New York</option>
+                    <option value="USA - Los Angeles">USA - Los Angeles</option>
+                    <option value="USA - Miami">USA - Miami</option>
+                    <option value="USA - Minnesota">USA - Minnesota</option>
+                    <option value="China - Beijing">China - Beijing</option>
+                    <option value="China - Shanghai">China - Shanghai</option>
+                    <option value="Turkey - Istanbul">Turkey - Istanbul</option>
+                    <option value="Turkey - Izmir">Turkey - Izmir</option>
+                </select>
+                <span class="info-icon" title="Explanation for Countries-Cities">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="packageType" name="packageType">
+                    <option value="">Package Type</option>
+                    <option value="Pallets">Pallets</option>
+                    <option value="Boxes">Boxes</option>
+                    <option value="Cartons">Cartons</option>
+                </select>
+                <span class="info-icon" title="Explanation for Package Type">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="unit1" name="unit1">
+                    <option value="">Unit -1</option>
+                    <option value="CM">CM</option>
+                    <option value="IN">IN</option>
+                </select>
+                <span class="info-icon" title="Explanation for Unit -1">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="unit2" name="unit2">
+                    <option value="">Unit -2</option>
+                    <option value="KG">KG</option>
+                    <option value="LB">LB</option>
+                </select>
+                <span class="info-icon" title="Explanation for Unit -2">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="currency" name="currency">
+                    <option value="">Currency</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="TRY">TRY - Turkish Lira</option>
+                </select>
+                <span class="info-icon" title="Explanation for Currency">ℹ</span>
+                <div class="error-message"></div>
+            </div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+</body>
+</html>
